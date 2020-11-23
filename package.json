@@ -1,0 +1,98 @@
+{
+  "name": "lit-login-test",
+  "version": "0.0.1",
+  "description": "Mobile login with time session counter",
+  "main": "dist/bundle.js",
+  "repository": "git@github.com:roberto-naharro/lit-login-test.git",
+  "author": "Roberto Naharro <roberto.naharro@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-angular": "^11.0.0",
+    "@typescript-eslint/eslint-plugin": "^4.8.1",
+    "@typescript-eslint/parser": "^4.8.1",
+    "eslint": "^7.14.0",
+    "eslint-config-prettier": "^6.15.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "husky": "^4.3.0",
+    "jest": "^26.6.3",
+    "jest-environment-jsdom-fourteen": "^1.0.1",
+    "lint-staged": "^10.5.1",
+    "prettier": "^2.2.0",
+    "stylus-supremacy": "^2.14.5",
+    "ts-loader": "^8.0.11",
+    "typescript": "^4.1.2",
+    "webpack": "^5.6.0",
+    "webpack-cli": "^4.2.0"
+  },
+  "scripts": {
+    "test:debug": "node --inspect-brk node_modules/.bin/jest --runInBand",
+    "test": "npx jest",
+    "build": "webpack",
+    "pretty:stylus": "npx stylus-supremacy format ./**/*.styl",
+    "lint": "eslint --fix --quiet --ext .ts src/"
+  },
+  "eslintConfig": {
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "ecmaVersion": 2020,
+      "sourceType": "module"
+    },
+    "extends": [
+      "plugin:@typescript-eslint/recommended",
+      "prettier/@typescript-eslint",
+      "plugin:prettier/recommended"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "jest": {
+    "roots": [
+      "<rootDir>/src"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.ts",
+      "!src/**/*.d.ts"
+    ],
+    "testMatch": [
+      "<rootDir>/src/**/__tests__/**/*.{spec,test}.ts"
+    ],
+    "testEnvironment": "jest-environment-jsdom-fourteen"
+  },
+  "prettier": {
+    "trailingComma": "all",
+    "singleQuote": true,
+    "proseWrap": "always"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-push": "CI=true npm run test"
+    }
+  },
+  "lint-staged": {
+    "*.+(ts)": [
+      "eslint --fix",
+      "git add"
+    ],
+    "*.+(json|html|css|md)": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "dependencies": {
+    "@webcomponents/webcomponentsjs": "^2.5.0",
+    "lit-element": "^2.4.0"
+  }
+}
