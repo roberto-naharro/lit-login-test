@@ -11,8 +11,7 @@
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "isolatedModules": false,
-    "noEmit": true
+    "isolatedModules": false
   },
   "include": ["src"]
 }
