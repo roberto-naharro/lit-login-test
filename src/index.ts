@@ -1,3 +1,1 @@
-document.onload = function () {
-  console.log('test');
-};
+import './HelloWord.ts';

@@ -7,6 +7,10 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 module.exports = {
   entry: [paths.src + '/index.ts'],
 
+  resolve: {
+    extensions: ['.ts', '.js'],
+  },
+
   output: {
     path: paths.build,
     filename: 'js/[name].bundle.js',
@@ -17,9 +21,9 @@ module.exports = {
     // Removes/cleans build folders and unused assets when rebuilding
     new CleanWebpackPlugin(),
 
-    // Copies files from target to destination folder
     new CopyWebpackPlugin({
       patterns: [
+        // static files
         {
           from: '**/*',
           context: paths.public,
@@ -44,7 +48,6 @@ module.exports = {
       {
         test: /\.ts$/,
         use: 'ts-loader',
-        exclude: /node_modules/,
       },
 
       // Styles: Inject Stylus into the head with source maps
