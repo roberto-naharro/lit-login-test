@@ -28,10 +28,12 @@ export abstract class GeneralInput extends LitElement {
 
   constructor() {
     super();
+  }
+
+  connectedCallback(): void {
     if (!this.value$) {
       throw new Error('Value listener must be passed in');
     }
-
     // Listen to input changes
     this.subs.add(
       fromEvent<InputEvent>(this.inputElement, 'change')
